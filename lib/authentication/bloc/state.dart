@@ -1,9 +1,8 @@
-class AuthState {
-}
+class AuthState {}
+
 class AuthInitial extends AuthState {}
 
 class AuthSignedIn extends AuthState {
-
   AuthSignedIn();
 }
 
@@ -12,4 +11,5 @@ class AuthError extends AuthState {
 
   AuthError(this.errorMessage);
 }
+
 class GithubAuthLoading extends AuthState {}

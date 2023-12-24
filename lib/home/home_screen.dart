@@ -28,8 +28,7 @@ class HomePage extends StatelessWidget {
     homeBloc = BlocProvider.of<HomeBloc>(context);
 
     return BlocConsumer<HomeBloc, HomeState>(
-      listener: (context, state) {
-      },
+      listener: (context, state) {},
       builder: (context, state) {
         if (state is LoadReposDataState) {
           return Scaffold(

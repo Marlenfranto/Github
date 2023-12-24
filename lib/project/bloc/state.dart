@@ -4,8 +4,8 @@ import 'package:github/utils/colors.dart';
 import '../../Model/branch_model.dart';
 import '../../Model/commit_model.dart';
 
-class ProjectState {
-}
+class ProjectState {}
+
 class InitialState extends ProjectState {}
 
 class BranchState extends ProjectState {
@@ -14,9 +14,9 @@ class BranchState extends ProjectState {
   List<CommitsModel> commitModel;
 
   final selectedColor = AppColors.secondaryColor;
-  List<Tab> tabs =[];
-  BranchState(this.branchModel,this.tabs,this.commitModel);
+  List<Tab> tabs = [];
+
+  BranchState(this.branchModel, this.tabs, this.commitModel);
 }
 
-class CommitUpdatingState extends ProjectState{
-}
+class CommitUpdatingState extends ProjectState {}

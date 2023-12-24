@@ -11,17 +11,17 @@ import '../../Model/repos_model.dart';
 import '../../utils/shared_preferences.dart';
 import 'event.dart';
 
-
-
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
-  String? userName,token,login,profile;
-  LoadReposDataState loadReposDataState = LoadReposDataState('','','',[],[]);
+  String? userName, token, login, profile;
+  LoadReposDataState loadReposDataState =
+      LoadReposDataState('', '', '', [], []);
+
   HomeBloc() : super(InitialState()) {
     on<InitEvent>(_init);
     on<ChangeRepoEvent>(_updateRepo);
   }
 
-   _init(InitEvent event, Emitter<HomeState> emit) async {
+  _init(InitEvent event, Emitter<HomeState> emit) async {
     emit(ReposDataLoading());
     userName = await SharedPreferencesService.loadString(Constants.username);
     token = await SharedPreferencesService.loadString(Constants.token);
@@ -35,31 +35,35 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
     if (response.statusCode == 200) {
       final List<dynamic> data = json.decode(response.body);
-      List<ReposModel> reposList = List<ReposModel>.from(data.map((repo) => ReposModel.fromJson(repo)));
-      List<ReposList> repo = List<ReposList>.from(reposList.map((repo) => ReposList(name: repo.owner?.login ?? '',image:repo.owner?.avatarUrl ?? '' )));
+      List<ReposModel> reposList =
+          List<ReposModel>.from(data.map((repo) => ReposModel.fromJson(repo)));
+      List<ReposList> repo = List<ReposList>.from(reposList.map((repo) =>
+          ReposList(
+              name: repo.owner?.login ?? '',
+              image: repo.owner?.avatarUrl ?? '')));
       final ids = repo.map((e) => e.name).toSet();
       repo.retainWhere((x) => ids.remove(x.name));
-      loadReposDataState..username = userName ?? ''
-      ..login = login ?? ''
-      ..profile = profile ?? ''
-      ..data = reposList
-      ..repos = repo;
+      loadReposDataState
+        ..username = userName ?? ''
+        ..login = login ?? ''
+        ..profile = profile ?? ''
+        ..data = reposList
+        ..repos = repo;
       emit(loadReposDataState);
     } else {
-      emit(LoadReposDataState(userName ?? '',login ?? '',profile ?? '',[],[]));
-
+      emit(LoadReposDataState(
+          userName ?? '', login ?? '', profile ?? '', [], []));
     }
-
   }
 
-   _updateRepo(ChangeRepoEvent event, Emitter<HomeState> emit) {
+  _updateRepo(ChangeRepoEvent event, Emitter<HomeState> emit) {
     emit(ReposDataLoading());
-     emit(loadReposDataState..selectedIndex = event.index);
-
+    emit(loadReposDataState..selectedIndex = event.index);
   }
 }
 
-class ReposList{
-  String? name,image;
-  ReposList({this.name,this.image});
+class ReposList {
+  String? name, image;
+
+  ReposList({this.name, this.image});
 }

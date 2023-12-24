@@ -2,34 +2,34 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
-class Styles{
-  static  TextStyle bodyBold = const TextStyle(
+class Styles {
+  static TextStyle bodyBold = const TextStyle(
     color: Colors.black,
     fontSize: 20,
     fontWeight: FontWeight.w500,
     letterSpacing: 0.12,
   );
 
-  static  TextStyle bodyLight = const TextStyle(
+  static TextStyle bodyLight = const TextStyle(
     color: Color(0xFF5F607E),
     fontSize: 16,
     fontWeight: FontWeight.w400,
     letterSpacing: 0.12,
   );
 
-  static  TextStyle bodyBoldMedium = const TextStyle(
+  static TextStyle bodyBoldMedium = const TextStyle(
     color: Colors.black,
     fontSize: 16,
     fontWeight: FontWeight.w500,
     letterSpacing: 0.12,
   );
-  static  TextStyle textWhite = const TextStyle(
+  static TextStyle textWhite = const TextStyle(
     color: Colors.white,
     fontSize: 18,
     fontWeight: FontWeight.w400,
     letterSpacing: 0.12,
   );
-  static  TextStyle textWhiteMedium = const TextStyle(
+  static TextStyle textWhiteMedium = const TextStyle(
     color: Colors.white,
     fontSize: 14,
     fontWeight: FontWeight.w400,

@@ -6,5 +6,6 @@ class InitEvent extends AuthEvent {}
 
 class SignInWithGitHubEvent extends AuthEvent {
   BuildContext context;
+
   SignInWithGitHubEvent(this.context);
 }

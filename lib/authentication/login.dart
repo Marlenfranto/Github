@@ -11,8 +11,7 @@ import 'bloc/bloc.dart';
 import 'bloc/event.dart';
 import 'bloc/state.dart';
 
-
-class AuthPage extends StatelessWidget with CommonUi{
+class AuthPage extends StatelessWidget with CommonUi {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -25,7 +24,7 @@ class AuthPage extends StatelessWidget with CommonUi{
     final bloc = BlocProvider.of<AuthBloc>(context);
 
     return BlocConsumer<AuthBloc, AuthState>(
-      listener: (BuildContext context, AuthState state) {
+        listener: (BuildContext context, AuthState state) {
       if (state is AuthSignedIn) {
         Navigator.push(
           context,
@@ -34,9 +33,8 @@ class AuthPage extends StatelessWidget with CommonUi{
       } else if (state is AuthError) {
         showToastMessage(state.errorMessage);
       }
-      },
-        builder: (BuildContext context, AuthState state) {
-if(state is AuthInitial || state is AuthError){
+    }, builder: (BuildContext context, AuthState state) {
+      if (state is AuthInitial || state is AuthError) {
         return Scaffold(
           appBar: null,
           body: SafeArea(
@@ -69,11 +67,17 @@ if(state is AuthInitial || state is AuthError){
                   Padding(
                     padding: const EdgeInsets.only(top: 24.0),
                     child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(backgroundColor: AppColors.primaryColor,minimumSize:Size(MediaQuery.of(context).size.width/1.5,48),shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColors.primaryColor,
+                        minimumSize:
+                            Size(MediaQuery.of(context).size.width / 1.5, 48),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
                       onPressed: () => bloc.add(SignInWithGitHubEvent(context)),
-                      child: const Text(Strings.signIn,style: TextStyle(color: Colors.white)),
+                      child: const Text(Strings.signIn,
+                          style: TextStyle(color: Colors.white)),
                     ),
                   ),
                 ],
@@ -81,13 +85,12 @@ if(state is AuthInitial || state is AuthError){
             ),
           ),
         );
-
-    }else{
+      } else {
         return const Scaffold(
           appBar: null,
           body: Center(child: CircularProgressIndicator()),
         );
-    }});
+      }
+    });
   }
 }
-

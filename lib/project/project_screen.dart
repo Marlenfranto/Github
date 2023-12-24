@@ -21,7 +21,7 @@ class ProjectPage extends StatefulWidget {
 }
 
 class _ProjectPageState extends State<ProjectPage>
-    with TickerProviderStateMixin  {
+    with TickerProviderStateMixin {
   late TabController _tabController;
 
   int selectedIndex = 0;
@@ -43,8 +43,10 @@ class _ProjectPageState extends State<ProjectPage>
         listener: (context, state) {},
         builder: (context, state) {
           if (state is BranchState) {
-            _tabController =
-                TabController(initialIndex: selectedIndex,length: state.branchModel.length, vsync: this);
+            _tabController = TabController(
+                initialIndex: selectedIndex,
+                length: state.branchModel.length,
+                vsync: this);
             _tabController.addListener(() {
               selectedIndex = _tabController.index;
 
@@ -125,60 +127,61 @@ class _ProjectPageState extends State<ProjectPage>
                     ),
                   ),
                 ),
-                    ListView.builder(
-                        itemCount: state.commitModel.length,
-                        shrinkWrap: true,
-                        itemBuilder: (BuildContext context, int index) {
-                          return Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Container(
-                              decoration: ShapeDecoration(
-                                color: Colors.white,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                shadows: const [
-                                  BoxShadow(
-                                    color: Colors.black,
-                                    blurRadius: 5,
-                                    offset: Offset(0, 0),
-                                    spreadRadius: 0,
-                                  )
-                                ],
+                ListView.builder(
+                    itemCount: state.commitModel.length,
+                    shrinkWrap: true,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          decoration: ShapeDecoration(
+                            color: Colors.white,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            shadows: const [
+                              BoxShadow(
+                                color: Colors.black,
+                                blurRadius: 5,
+                                offset: Offset(0, 0),
+                                spreadRadius: 0,
+                              )
+                            ],
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(4.0),
+                            child: ListTile(
+                              leading: Image.asset(Images.folder),
+                              title: Text(
+                                state.commitModel[index].commit?.message ?? '',
+                                style: Styles.bodyBoldMedium,
                               ),
-                              child: Padding(
-                                padding: const EdgeInsets.all(4.0),
-                                child: ListTile(
-                                  leading: Image.asset(Images.folder),
-                                  title: Text(
-                                    state.commitModel[index].commit?.message ?? '',
-                                    style: Styles.bodyBoldMedium,
+                              isThreeLine: true,
+                              subtitle: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    '${DateFormat("dd/MM/yy hh:mm a").format(DateFormat("yyyy-MM-ddThh:mm:ssZ").parse(state.commitModel[index].commit?.author?.date ?? ''))}',
                                   ),
-                                  isThreeLine: true,
-                                  subtitle: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                  Row(
                                     children: [
-                                      Text(
-                                          '${DateFormat("dd/MM/yy hh:mm a").format(DateFormat("yyyy-MM-ddThh:mm:ssZ").parse(state.commitModel[index].commit?.author?.date ?? ''))}',
-
-                                      ),
-                                      Row(
-                                        children: [
-                                          Image.asset(Images.person),
-                                          Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Text(state.commitModel[index].commit?.author?.name ?? ''),
-                                          ),
-                                        ],
+                                      Image.asset(Images.person),
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Text(state.commitModel[index]
+                                                .commit?.author?.name ??
+                                            ''),
                                       ),
                                     ],
                                   ),
-                                ),
+                                ],
                               ),
                             ),
-                          );
-                        }),
-                  ])),
+                          ),
+                        ),
+                      );
+                    }),
+              ])),
             );
           } else {
             return const Scaffold(

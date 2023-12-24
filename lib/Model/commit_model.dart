@@ -11,25 +11,25 @@ class CommitsModel {
 
   CommitsModel(
       {this.sha,
-        this.nodeId,
-        this.commit,
-        this.url,
-        this.htmlUrl,
-        this.commentsUrl,
-        this.author,
-        this.committer,
-        this.parents});
+      this.nodeId,
+      this.commit,
+      this.url,
+      this.htmlUrl,
+      this.commentsUrl,
+      this.author,
+      this.committer,
+      this.parents});
 
   CommitsModel.fromJson(Map<String, dynamic> json) {
     sha = json['sha'];
     nodeId = json['node_id'];
     commit =
-    json['commit'] != null ? new Commit.fromJson(json['commit']) : null;
+        json['commit'] != null ? new Commit.fromJson(json['commit']) : null;
     url = json['url'];
     htmlUrl = json['html_url'];
     commentsUrl = json['comments_url'];
     author =
-    json['author'] != null ? new AuthorMain.fromJson(json['author']) : null;
+        json['author'] != null ? new AuthorMain.fromJson(json['author']) : null;
     committer = json['committer'] != null
         ? new AuthorMain.fromJson(json['committer'])
         : null;
@@ -75,16 +75,16 @@ class Commit {
 
   Commit(
       {this.author,
-        this.committer,
-        this.message,
-        this.tree,
-        this.url,
-        this.commentCount,
-        this.verification});
+      this.committer,
+      this.message,
+      this.tree,
+      this.url,
+      this.commentCount,
+      this.verification});
 
   Commit.fromJson(Map<String, dynamic> json) {
     author =
-    json['author'] != null ? new Author.fromJson(json['author']) : null;
+        json['author'] != null ? new Author.fromJson(json['author']) : null;
     committer = json['committer'] != null
         ? new Author.fromJson(json['committer'])
         : null;
@@ -206,23 +206,23 @@ class AuthorMain {
 
   AuthorMain(
       {this.login,
-        this.id,
-        this.nodeId,
-        this.avatarUrl,
-        this.gravatarId,
-        this.url,
-        this.htmlUrl,
-        this.followersUrl,
-        this.followingUrl,
-        this.gistsUrl,
-        this.starredUrl,
-        this.subscriptionsUrl,
-        this.organizationsUrl,
-        this.reposUrl,
-        this.eventsUrl,
-        this.receivedEventsUrl,
-        this.type,
-        this.siteAdmin});
+      this.id,
+      this.nodeId,
+      this.avatarUrl,
+      this.gravatarId,
+      this.url,
+      this.htmlUrl,
+      this.followersUrl,
+      this.followingUrl,
+      this.gistsUrl,
+      this.starredUrl,
+      this.subscriptionsUrl,
+      this.organizationsUrl,
+      this.reposUrl,
+      this.eventsUrl,
+      this.receivedEventsUrl,
+      this.type,
+      this.siteAdmin});
 
   AuthorMain.fromJson(Map<String, dynamic> json) {
     login = json['login'];

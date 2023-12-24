@@ -8,7 +8,7 @@ class BranchModel {
   BranchModel.fromJson(Map<String, dynamic> json) {
     name = json['name'];
     commit =
-    json['commit'] != null ? new Commit.fromJson(json['commit']) : null;
+        json['commit'] != null ? new Commit.fromJson(json['commit']) : null;
     protected = json['protected'];
   }
 
